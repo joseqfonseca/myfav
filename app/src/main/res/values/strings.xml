@@ -7,4 +7,5 @@
     <string name="home_text_search">Digite aqui!</string>
     <string name="home_text_notFound">Nenhum produto encontrado :/</string>
     <string name="product_title">Produto</string>
+    <string name="product_textDescription">Descrição</string>
 </resources>

@@ -37,7 +37,7 @@ class HomeRecyclerAdapter(
 
     inner class RecyclerViewHomeViewHolder(val item: ItemProductBinding) :
         RecyclerView.ViewHolder(item.root) {
-        //val picasso = Picasso()
+
         fun bind(product: Product) {
             item.itemProductTitle.text = product.title
             item.itemProductCurrency.text = "R$"

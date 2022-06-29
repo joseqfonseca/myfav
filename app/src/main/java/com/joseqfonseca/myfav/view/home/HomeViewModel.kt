@@ -20,7 +20,7 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             _listProduct.value = null
             _listProduct.value =
-                productService.searchProductByFirstCategoryPredict(word).toMutableList()
+                productService.searchProductByFirstCategoryPredict(word)
         }
     }
 }

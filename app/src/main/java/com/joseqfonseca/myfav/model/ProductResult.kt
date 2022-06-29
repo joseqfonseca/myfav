@@ -1,5 +1,7 @@
 package com.joseqfonseca.myfav.model
 
-class ProductResult(
-    val results: List<Product>
+data class ProductResult(
+    val results: List<Product>,
+    val body: Product,
+    val content: List<Product>
 )

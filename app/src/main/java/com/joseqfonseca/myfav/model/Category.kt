@@ -1,6 +1,6 @@
 package com.joseqfonseca.myfav.model
 
-class Category(
+data class Category(
     val domain_id: String,
     val domain_name: String,
     val category_id: String,

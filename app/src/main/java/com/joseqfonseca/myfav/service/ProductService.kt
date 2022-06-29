@@ -1,6 +1,7 @@
 package com.joseqfonseca.myfav.service
 
 import android.util.Log
+import com.joseqfonseca.myfav.lib.Connection
 import com.joseqfonseca.myfav.model.Product
 import com.joseqfonseca.myfav.repository.CategoryRetrofitRepository
 import com.joseqfonseca.myfav.repository.ProductRetrofitRepository
@@ -15,13 +16,16 @@ class ProductService {
         var products = emptyList<Product>()
 
         try {
-            products = productRepository.searchByCategoryId(
-                categoryRepository.getByPreditor(word).first().category_id
+            products = productRepository.getProductsByIds(
+                productRepository.getHighlightsByCategory(
+                    categoryRepository.getByPreditor(word).first().category_id
+                ).filter{it.type == "ITEM"}.map { it.id }.joinToString()
             )
         } catch (e: Exception) {
-            Log.e(LOG_TAG, "searchProductByFirstCategoryPredict() : " + e.toString())
+            Log.e(LOG_TAG, "searchProductByFirstCategoryPredict() : ${e.toString()}")
         }
 
         return products
     }
+
 }

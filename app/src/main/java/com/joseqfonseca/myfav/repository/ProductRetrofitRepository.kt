@@ -3,12 +3,22 @@ package com.joseqfonseca.myfav.repository
 import com.joseqfonseca.myfav.data.retrofit.ProductRetrofit
 import com.joseqfonseca.myfav.lib.Connection
 import com.joseqfonseca.myfav.model.Product
+import com.joseqfonseca.myfav.model.ProductResult
 
 class ProductRetrofitRepository : ProductRepository {
     val retrofit = Connection.retrofitBuild.create(ProductRetrofit::class.java)
-    //val token = "APP_USR-878200324327964-062710-4371316993b52e54dd7b33b9ad9ff140-131272078"
 
-    override suspend fun searchByCategoryId(category_id: String): List<Product> {
-        return retrofit.searchProductByCategoryId(category_id).results
+    override suspend fun searchByCategoryId(categoryId: String): List<Product> {
+        return retrofit.searchProductByCategoryId(categoryId).results
+    }
+
+    override suspend fun getProductsByIds(productId: String): List<Product> {
+        return retrofit.getProductsByIds(productId).map {
+            it.body
+        }
+    }
+
+    override suspend fun getHighlightsByCategory(categoryId: String): List<Product> {
+        return retrofit.getHighlightsByCategory(categoryId,Connection.getTokenByRetrofit()).content
     }
 }

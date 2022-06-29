@@ -18,17 +18,19 @@ class HomeFragment : Fragment() {
         FragmentHomeBinding.inflate(layoutInflater)
     }
 
-    val homeViewModel = HomeViewModel()
+    lateinit var homeViewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
+        homeViewModel = HomeViewModel()
+
         configToolbar()
         configRecyclerView()
         setTextSearchListener()
 
-        //homeViewModel.searchProductByFirstCategoryPredict("celular")
+        homeViewModel.searchProductByFirstCategoryPredict("violon")
     }
 
     override fun onCreateView(
@@ -92,7 +94,7 @@ class HomeFragment : Fragment() {
     private fun openProductFragment(product: Product) {
         findNavController().navigate(
             R.id.action_homeFragment_to_productFragment,
-            bundleOf("product" to product)
+            bundleOf(Pair("product", product))
         )
     }
 
