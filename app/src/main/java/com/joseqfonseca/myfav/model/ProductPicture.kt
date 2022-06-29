@@ -1,5 +1,9 @@
 package com.joseqfonseca.myfav.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class ProductPicture(
     val id: String,
     val url: String,
@@ -7,4 +11,4 @@ data class ProductPicture(
     val size: String,
     val max_size: String,
     val quality: String
-)
+):Parcelable

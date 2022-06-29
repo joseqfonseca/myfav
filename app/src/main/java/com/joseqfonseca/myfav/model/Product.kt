@@ -17,5 +17,6 @@ class Product(
     val condition: String,
     val accepts_mercadopago: String,
     val pictures: @RawValue List<ProductPicture>,
-    val attributes: @RawValue List<ProductAttribute>
-):Parcelable
+    val attributes: @RawValue List<ProductAttribute>,
+    var isFavorite: Boolean
+) : Parcelable

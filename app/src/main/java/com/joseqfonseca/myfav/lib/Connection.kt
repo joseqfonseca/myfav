@@ -30,6 +30,6 @@ object Connection {
             Log.e(LOG_TAG, "getTokenByRetrofit" + e.toString())
         }
         return token?.access_token!!*/
-        return "Bearer APP_USR-878200324327964-062911-365528a9e8bb0ad824a585e1767f5560-131272078"
+        return "Bearer APP_USR-878200324327964-062917-6c4e10abbfac9426cf5963c538f4c6b2-131272078"
     }
 }

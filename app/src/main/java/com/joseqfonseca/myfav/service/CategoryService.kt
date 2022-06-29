@@ -15,7 +15,7 @@ class CategoryService {
         try {
             categories = categoryRepository.getByPreditor(word)
         } catch (e: Exception) {
-            Log.e(LOG_TAG, "getByPreditor() : "+ e.toString())
+            Log.e(LOG_TAG, "getByPreditor() : ${e.toString()}")
         }
 
         return categories

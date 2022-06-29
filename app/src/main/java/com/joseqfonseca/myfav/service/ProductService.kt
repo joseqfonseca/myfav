@@ -1,10 +1,12 @@
 package com.joseqfonseca.myfav.service
 
+import android.content.SharedPreferences
 import android.util.Log
 import com.joseqfonseca.myfav.lib.Connection
 import com.joseqfonseca.myfav.model.Product
 import com.joseqfonseca.myfav.repository.CategoryRetrofitRepository
 import com.joseqfonseca.myfav.repository.ProductRetrofitRepository
+import kotlin.coroutines.coroutineContext
 
 class ProductService {
 
@@ -26,6 +28,10 @@ class ProductService {
         }
 
         return products
+    }
+
+    fun setFavorite(product: Product){
+
     }
 
 }

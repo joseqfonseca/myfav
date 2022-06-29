@@ -55,12 +55,14 @@
         tools:text="99,90" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/itemProduct_btnFavorite"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginBottom="5dp"
         android:src="@drawable/ic_favorite_off"
         app:layout_constraintBottom_toTopOf="@id/divider"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
 
     <View
         android:id="@+id/divider"

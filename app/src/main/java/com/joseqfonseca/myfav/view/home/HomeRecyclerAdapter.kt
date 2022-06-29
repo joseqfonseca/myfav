@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.joseqfonseca.myfav.R
 import com.joseqfonseca.myfav.databinding.ItemProductBinding
 import com.joseqfonseca.myfav.model.Product
 import com.squareup.picasso.Picasso
@@ -42,7 +43,8 @@ class HomeRecyclerAdapter(
             item.itemProductTitle.text = product.title
             item.itemProductCurrency.text = "R$"
             item.itemProductPrice.text = product.price
-            Picasso.get().load(product.thumbnail).into(item.itemProductImage);
+            //item.itemProductBtnFavorite.setImageResource(if (product.isFavorite) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off)
+            Picasso.get().load(product.thumbnail).into(item.itemProductImage)
 
             item.root.setOnClickListener {
                 itemListener(product)
