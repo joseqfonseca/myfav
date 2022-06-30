@@ -1,11 +1,11 @@
 package com.joseqfonseca.myfav.view.product
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.joseqfonseca.myfav.R
 import com.joseqfonseca.myfav.databinding.FragmentProductBinding
@@ -26,18 +26,22 @@ class ProductFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         configToolbar()
+        setListeners()
 
         val product = arguments?.get("product") as Product
 
-        productViewModel = ProductViewModel(product, requireContext())
+        //only render if a product exists passed throught constructor when navigate to this fragment
+        product?.let {
 
-        setListeners()
+            productViewModel =
+                ProductViewModel(it, activity?.getPreferences(Context.MODE_PRIVATE)!!)
 
-        bindingComponnents(productViewModel.product)
+            productViewModel._isFavorite.observe(this, {
+                updateFavoriteIcon(it)
+            })
 
-        productViewModel._product.observe(this, {
-            updateFavoriteIcon(it)
-        })
+            bindingComponnents(productViewModel.product)
+        }
     }
 
     override fun onCreateView(
@@ -45,6 +49,11 @@ class ProductFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        productViewModel.verifyFavorite()
     }
 
     private fun configToolbar() {
@@ -75,7 +84,7 @@ class ProductFragment : Fragment() {
 
         //append the description text with all of product attributes
         product.attributes.forEach {
-            binding.productTextDescripton.append("\n${it.name}: ${it.value_name}")
+            binding.productTextDescripton.append("${it.name}: ${it.value_name}\n")
         }
     }
 
@@ -119,7 +128,7 @@ class ProductFragment : Fragment() {
         productViewModel.setFavorite()
     }
 
-    private fun updateFavoriteIcon(product: Product) {
-        binding.productBtnFavorite.setImageResource(if (product.isFavorite) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off)
+    private fun updateFavoriteIcon(isFavorite: Boolean) {
+        binding.productBtnFavorite.setImageResource(if (isFavorite) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off)
     }
 }

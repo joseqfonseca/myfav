@@ -40,11 +40,11 @@ class HomeRecyclerAdapter(
         RecyclerView.ViewHolder(item.root) {
 
         fun bind(product: Product) {
-            item.itemProductTitle.text = product.title
-            item.itemProductCurrency.text = "R$"
-            item.itemProductPrice.text = product.price
+            item.itemProductTextTitle.text = product.title
+            item.itemProductTextCurrency.text = "R$"
+            item.itemProductTextPrice.text = product.price
             //item.itemProductBtnFavorite.setImageResource(if (product.isFavorite) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off)
-            Picasso.get().load(product.thumbnail).into(item.itemProductImage)
+            Picasso.get().load(product.thumbnail).into(item.itemProductImageView)
 
             item.root.setOnClickListener {
                 itemListener(product)

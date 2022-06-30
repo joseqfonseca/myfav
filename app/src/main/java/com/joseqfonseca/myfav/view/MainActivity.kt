@@ -16,11 +16,11 @@ class MainActivity : AppCompatActivity() {
         //activeFavorites()
     }
 
-    private fun activeFavorites() {
+    /*private fun activeFavorites() {
         val sp = getPreferences(Context.MODE_PRIVATE)
 
         if (sp.getStringSet("FAVORITES", mutableSetOf<String>()) == null)
             sp.edit().putStringSet("FAVORITES", mutableSetOf<String>()).apply()
 
-    }
+    }*/
 }

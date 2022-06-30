@@ -22,7 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/toolbar_product"
-            app:title="@string/product_title"></androidx.appcompat.widget.Toolbar>
+            app:title="@string/product_titleToolbar"></androidx.appcompat.widget.Toolbar>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/product_textTitle"
@@ -120,7 +120,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:paddingBottom="20dp"
             android:lineSpacingExtra="10sp"

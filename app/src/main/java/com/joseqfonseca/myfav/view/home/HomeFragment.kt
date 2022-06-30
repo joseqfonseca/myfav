@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
         configRecyclerView()
         setTextSearchListener()
 
-        homeViewModel.searchProductByFirstCategoryPredict("violon")
+        homeViewModel.searchProductByFirstCategoryPredict("music")
     }
 
     override fun onCreateView(
@@ -63,7 +63,6 @@ class HomeFragment : Fragment() {
 
     private fun configRecyclerView() {
         val recycler = binding.recyclerView
-        recycler.layoutManager = GridLayoutManager(requireContext(), 1)
 
         val adapter = HomeRecyclerAdapter(
             { openProductFragment(it) }

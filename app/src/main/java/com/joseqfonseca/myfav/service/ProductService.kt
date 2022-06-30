@@ -21,7 +21,7 @@ class ProductService {
             products = productRepository.getProductsByIds(
                 productRepository.getHighlightsByCategory(
                     categoryRepository.getByPreditor(word).first().category_id
-                ).filter{it.type == "ITEM"}.map { it.id }.joinToString()
+                ).filter { it.type == "ITEM" }.map { it.id }.joinToString()
             )
         } catch (e: Exception) {
             Log.e(LOG_TAG, "searchProductByFirstCategoryPredict() : ${e.toString()}")
@@ -30,8 +30,20 @@ class ProductService {
         return products
     }
 
-    fun setFavorite(product: Product){
+    fun setFavorite(product: Product) {
 
+    }
+
+    suspend fun getFavorites(listFavoritesLocal: Set<String>): List<Product> {
+        var list = listOf<Product>()
+
+        try {
+            list = productRepository.getProductsByIds(listFavoritesLocal.joinToString())
+        } catch (e: Exception) {
+            Log.e(LOG_TAG, "getFavorites() : ${e.toString()}")
+        }
+
+        return list
     }
 
 }

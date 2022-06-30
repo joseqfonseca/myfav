@@ -6,6 +6,7 @@
     <string name="icon_menu_search">Busca</string>
     <string name="home_text_search">Digite aqui!</string>
     <string name="home_text_notFound">Nenhum produto encontrado :/</string>
-    <string name="product_title">Produto</string>
+    <string name="product_titleToolbar">Produto</string>
     <string name="product_textDescription">Descrição</string>
+    <string name="favorite_titleToolbar">Favoritos</string>
 </resources>

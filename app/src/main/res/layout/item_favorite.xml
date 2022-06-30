@@ -7,7 +7,7 @@
     android:padding="10dp">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/itemProduct_imageView"
+        android:id="@+id/itemFavorite_imageView"
         android:layout_width="120dp"
         android:layout_height="120dp"
         tools:src="@drawable/ic_search"
@@ -15,34 +15,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/itemProduct_textTitle"
+        android:id="@+id/itemFavorite_textTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
         android:fontFamily="@font/comfortaa"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/itemProduct_imageView"
+        app:layout_constraintStart_toEndOf="@id/itemFavorite_imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textAlignment="textEnd"
         tools:text="Título do produto" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/itemProduct_textCurrency"
+        android:id="@+id/itemFavorite_textCurrency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
         android:fontFamily="@font/comfortaa_bold"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/itemProduct_textPrice"
-        app:layout_constraintTop_toBottomOf="@id/itemProduct_textTitle"
+        app:layout_constraintEnd_toStartOf="@id/itemFavorite_textPrice"
+        app:layout_constraintTop_toBottomOf="@id/itemFavorite_textTitle"
         android:layout_marginTop="5dp"
         tools:text="R$" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/itemProduct_textPrice"
+        android:id="@+id/itemFavorite_textPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
@@ -50,25 +50,24 @@
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/itemProduct_textTitle"
+        app:layout_constraintTop_toBottomOf="@id/itemFavorite_textTitle"
         android:layout_marginTop="5dp"
         tools:text="99,90" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/itemProduct_btnFavorite"
+        android:id="@+id/itemFavorite_btnRemove"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/ic_favorite_off"
+        android:src="@drawable/ic_favorite_remove"
         app:layout_constraintBottom_toTopOf="@id/divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintTop_toBottomOf="@id/itemProduct_imageView"
+        app:layout_constraintTop_toBottomOf="@id/itemFavorite_imageView"
         android:layout_marginTop="5dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
