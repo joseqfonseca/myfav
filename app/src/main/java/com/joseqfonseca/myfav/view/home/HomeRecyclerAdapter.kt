@@ -43,7 +43,7 @@ class HomeRecyclerAdapter(
             item.itemProductTextCurrency.text = "R$"
             item.itemProductTextPrice.text = product.price
             item.itemProductBtnFavorite.setImageResource(if (product.isFavorite) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off)
-            Picasso.get().load(product.thumbnail).into(item.itemProductImageView)
+            Picasso.get().load(product.secure_thumbnail).into(item.itemProductImageView)
 
             item.root.setOnClickListener {
                 itemListener(product)

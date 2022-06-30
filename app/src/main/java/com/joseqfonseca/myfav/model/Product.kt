@@ -11,7 +11,7 @@ class Product(
     val title: String,
     val price: String,
     val description: String,
-    val thumbnail: String,
+    val secure_thumbnail: String,
     val type: String,
     val available_quantity: String,
     val condition: String,
