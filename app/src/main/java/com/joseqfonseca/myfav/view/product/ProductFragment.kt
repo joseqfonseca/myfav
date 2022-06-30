@@ -75,9 +75,13 @@ class ProductFragment : Fragment() {
             "10x " + String.format("%.2f", product.price.toDouble().div(10)) + " sem juros"
 
         //rendering the first picture
-        product.pictures[0].let {
+        product.pictures[0]?.let {
             Picasso.get().load(it.url).into(binding.productImageProduct)
+
+            binding.productTextNumberCurrentPicture.text = "1"
+            binding.productTextTotalPicture.text = "/${product.pictures.size}"
         }
+
 
         //setting the favorite button color
         binding.productBtnFavorite.setImageResource(if (product.isFavorite) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off)
@@ -110,6 +114,8 @@ class ProductFragment : Fragment() {
                 .into(binding.productImageProduct)
 
             pointerPicture -= 1
+
+            binding.productTextNumberCurrentPicture.text = (pointerPicture + 1).toString()
         }
     }
 
@@ -121,6 +127,8 @@ class ProductFragment : Fragment() {
                 .into(binding.productImageProduct)
 
             pointerPicture += 1
+
+            binding.productTextNumberCurrentPicture.text = (pointerPicture + 1).toString()
         }
     }
 
