@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.widget.TextView
 import androidx.compose.ui.input.key.KeyEvent
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.joseqfonseca.myfav.R
@@ -40,6 +41,12 @@ class FavoriteFragment : Fragment() {
         binding.favoriteRecyclerView.adapter = adapter
 
         favoriteViewModel._listFavorites.observe(this, {
+            it?.let {
+                binding.favoriteTextNotFound.visibility =
+                    if (it.size > 0) View.GONE else View.VISIBLE
+                binding.favoriteLoading.visibility = View.GONE
+            }
+
             adapter.updateList(it)
         })
     }
@@ -53,7 +60,7 @@ class FavoriteFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        favoriteViewModel.loadFavorites()
+        loadFavorites()
     }
 
     private fun configToolbar() {
@@ -61,7 +68,7 @@ class FavoriteFragment : Fragment() {
             when (it.itemId) {
                 R.id.favorite_btn_search -> {
                     binding.favoriteTextSearch.run {
-                        visibility = View.VISIBLE
+                        isVisible = !isVisible
                         requestFocus()
                     }
                     true
@@ -89,6 +96,12 @@ class FavoriteFragment : Fragment() {
 
     private fun removeFavorite(productId: String) {
         favoriteViewModel.removeFavorite(productId)
+    }
+
+    private fun loadFavorites() {
+        binding.favoriteLoading.visibility = View.VISIBLE
+
+        favoriteViewModel.loadFavorites()
     }
 
 }

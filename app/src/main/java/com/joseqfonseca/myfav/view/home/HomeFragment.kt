@@ -1,12 +1,13 @@
 package com.joseqfonseca.myfav.view.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.joseqfonseca.myfav.R
 import com.joseqfonseca.myfav.databinding.FragmentHomeBinding
 import com.joseqfonseca.myfav.lib.Utils
@@ -22,15 +23,14 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setHasOptionsMenu(true)
 
-        homeViewModel = HomeViewModel()
+        homeViewModel = HomeViewModel(activity?.getPreferences(Context.MODE_PRIVATE)!!)
 
         configToolbar()
         configRecyclerView()
         setTextSearchListener()
 
-        homeViewModel.searchProductByFirstCategoryPredict("music")
+        search("music")
     }
 
     override fun onCreateView(
@@ -40,12 +40,17 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.verifyFavorites()
+    }
+
     private fun configToolbar() {
         binding.homeToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.home_btn_search -> {
                     binding.homeTextSearch.run {
-                        visibility = View.VISIBLE
+                        isVisible = !isVisible
                         requestFocus()
                     }
                     true
@@ -65,13 +70,15 @@ class HomeFragment : Fragment() {
         val recycler = binding.recyclerView
 
         val adapter = HomeRecyclerAdapter(
-            { openProductFragment(it) }
+            { openProductFragment(it) },
+            { setFavorite(it) }
         )
         recycler.adapter = adapter
 
-        homeViewModel.listProduct.observe(this, {
+        homeViewModel._listProduct.observe(this, {
             it?.let {
                 binding.textNotFound.visibility = if (it.size > 0) View.GONE else View.VISIBLE
+                binding.homeLoading.visibility = View.GONE
             }
 
             adapter.updateList(it)
@@ -83,7 +90,7 @@ class HomeFragment : Fragment() {
         binding.homeTextSearch.setOnKeyListener { view, i, keyEvent ->
             if (keyEvent.keyCode == KeyEvent.KEYCODE_ENTER) {
                 val textView = view as TextView
-                homeViewModel.searchProductByFirstCategoryPredict(textView.text.toString())
+                search(textView.text.toString())
                 Utils.hideKeyboard(view)
             }
             false
@@ -95,6 +102,16 @@ class HomeFragment : Fragment() {
             R.id.action_homeFragment_to_productFragment,
             bundleOf(Pair("product", product))
         )
+    }
+
+    private fun setFavorite(productId: String) {
+        homeViewModel.setFavorite(productId)
+    }
+
+    private fun search(word: String) {
+        binding.homeLoading.visibility = View.VISIBLE
+
+        homeViewModel.searchProductByFirstCategoryPredict(word)
     }
 
 }

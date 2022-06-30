@@ -36,7 +36,6 @@ class ProductViewModel(
         product.isFavorite = isFav
 
         isFavorite.value = isFav
-
     }
 
     fun setFavorite() {

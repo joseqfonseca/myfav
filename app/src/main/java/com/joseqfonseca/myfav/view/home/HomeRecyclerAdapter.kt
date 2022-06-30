@@ -2,8 +2,6 @@ package com.joseqfonseca.myfav.view.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.joseqfonseca.myfav.R
 import com.joseqfonseca.myfav.databinding.ItemProductBinding
@@ -11,7 +9,8 @@ import com.joseqfonseca.myfav.model.Product
 import com.squareup.picasso.Picasso
 
 class HomeRecyclerAdapter(
-    val itemListener: (product: Product) -> Unit
+    val itemListener: (product: Product) -> Unit,
+    val favoriteListener: (productId: String) -> Unit
 ) : RecyclerView.Adapter<HomeRecyclerAdapter.RecyclerViewHomeViewHolder>() {
 
     private val productList = mutableListOf<Product>()
@@ -43,11 +42,15 @@ class HomeRecyclerAdapter(
             item.itemProductTextTitle.text = product.title
             item.itemProductTextCurrency.text = "R$"
             item.itemProductTextPrice.text = product.price
-            //item.itemProductBtnFavorite.setImageResource(if (product.isFavorite) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off)
+            item.itemProductBtnFavorite.setImageResource(if (product.isFavorite) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off)
             Picasso.get().load(product.thumbnail).into(item.itemProductImageView)
 
             item.root.setOnClickListener {
                 itemListener(product)
+            }
+
+            item.itemProductBtnFavorite.setOnClickListener {
+                favoriteListener(product.id)
             }
         }
 
