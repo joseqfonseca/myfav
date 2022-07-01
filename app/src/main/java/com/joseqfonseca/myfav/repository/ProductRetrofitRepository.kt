@@ -12,8 +12,8 @@ class ProductRetrofitRepository : ProductRepository {
         return retrofit.searchProductByCategoryId(categoryId).results
     }
 
-    override suspend fun getProductsByIds(productId: String): List<Product> {
-        return retrofit.getProductsByIds(productId).map {
+    override suspend fun getProductsByIds(productIds: String): List<Product> {
+        return retrofit.getProductsByIds(productIds).map {
             it.body
         }
     }

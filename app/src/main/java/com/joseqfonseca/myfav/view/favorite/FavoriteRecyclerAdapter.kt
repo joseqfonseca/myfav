@@ -36,7 +36,7 @@ class FavoriteRecyclerAdapter(
 
         fun bind(product: Product) {
             binding.itemFavoriteTextTitle.text = product.title
-            binding.itemFavoriteTextPrice.text = product.price
+            binding.itemFavoriteTextPrice.text = String.format("%.2f", product.price.toDouble())
             Picasso.get().load(product.secure_thumbnail).into(binding.itemFavoriteImageView)
 
             binding.root.setOnClickListener {

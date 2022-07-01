@@ -3,6 +3,7 @@ package com.joseqfonseca.myfav.service
 import android.util.Log
 import com.joseqfonseca.myfav.model.Category
 import com.joseqfonseca.myfav.repository.CategoryRetrofitRepository
+import retrofit2.HttpException
 
 class CategoryService {
 
@@ -14,8 +15,8 @@ class CategoryService {
 
         try {
             categories = categoryRepository.getByPreditor(word)
-        } catch (e: Exception) {
-            Log.e(LOG_TAG, "getByPreditor() : ${e.toString()}")
+        } catch (e: HttpException) {
+            Log.e(LOG_TAG, "getByPreditor() : ${e.response()}")
         }
 
         return categories

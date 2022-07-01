@@ -1,12 +1,10 @@
 package com.joseqfonseca.myfav.service
 
-import android.content.SharedPreferences
 import android.util.Log
-import com.joseqfonseca.myfav.lib.Connection
 import com.joseqfonseca.myfav.model.Product
 import com.joseqfonseca.myfav.repository.CategoryRetrofitRepository
 import com.joseqfonseca.myfav.repository.ProductRetrofitRepository
-import kotlin.coroutines.coroutineContext
+import retrofit2.HttpException
 
 class ProductService {
 
@@ -18,20 +16,55 @@ class ProductService {
         var products = emptyList<Product>()
 
         try {
-            products = productRepository.getProductsByIds(
-                productRepository.getHighlightsByCategory(
-                    categoryRepository.getByPreditor(word).first().category_id
-                ).filter { it.type == "ITEM" }.map { it.id }.joinToString()
-            )
+            val categoryIdByPreditor = getByPreditor(word)
+
+            val highlightsProductsIds = getHighlightsByCategory(categoryIdByPreditor)
+                .filter { it.type == "ITEM" }
+                .map { it.id }
+                .joinToString()
+
+            products = getProductsByIds(highlightsProductsIds)
         } catch (e: Exception) {
-            Log.e(LOG_TAG, "searchProductByFirstCategoryPredict() : ${e.toString()}")
+            Log.e(LOG_TAG, "searchProductByFirstCategoryPredict() : ${e.message}")
         }
 
         return products
     }
 
-    fun setFavorite(product: Product) {
+    private suspend fun getByPreditor(word: String): String {
+        var predictor: String
 
+        try {
+            predictor = categoryRepository.getByPreditor(word).first().category_id
+        } catch (e: HttpException) {
+            throw Exception("getByPreditor() : ${e.response()}")
+        }
+
+        return predictor
+    }
+
+    private suspend fun getHighlightsByCategory(categoryId: String): List<Product> {
+        var list: List<Product>
+
+        try {
+            list = productRepository.getHighlightsByCategory(categoryId)
+        } catch (e: HttpException) {
+            throw Exception("getHighlightsByCategory() : ${e.response()}")
+        }
+
+        return list
+    }
+
+    private suspend fun getProductsByIds(productIds: String): List<Product> {
+        var list: List<Product>
+
+        try {
+            list = productRepository.getProductsByIds(productIds)
+        } catch (e: HttpException) {
+            throw Exception("getProductsByIds() : ${e.response()}")
+        }
+
+        return list
     }
 
     suspend fun getFavorites(listFavoritesLocal: Set<String>): List<Product> {

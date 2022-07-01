@@ -6,7 +6,7 @@ import retrofit2.http.*
 
 interface ProductRetrofit {
 
-    @GET("sites/MLB/search?limit=30")
+    @GET("sites/MLB/search?limit=1")
     suspend fun searchProductByCategoryId(
         @Query("category") categoryId: String,
         @Header("Authorization") token: String = ""

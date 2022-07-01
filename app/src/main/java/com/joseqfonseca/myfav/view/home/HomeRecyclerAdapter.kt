@@ -40,8 +40,7 @@ class HomeRecyclerAdapter(
 
         fun bind(product: Product) {
             item.itemProductTextTitle.text = product.title
-            item.itemProductTextCurrency.text = "R$"
-            item.itemProductTextPrice.text = product.price
+            item.itemProductTextPrice.text = String.format("%.2f", product.price.toDouble())
             item.itemProductBtnFavorite.setImageResource(if (product.isFavorite) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off)
             Picasso.get().load(product.secure_thumbnail).into(item.itemProductImageView)
 

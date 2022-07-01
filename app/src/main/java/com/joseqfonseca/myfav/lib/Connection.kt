@@ -16,7 +16,6 @@ object Connection {
     val retrofitBuild: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(baseUrl)
-            //.client(OkHttpClient.Builder().build())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
