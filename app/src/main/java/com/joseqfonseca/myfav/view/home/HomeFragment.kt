@@ -31,7 +31,6 @@ class HomeFragment : Fragment() {
 
         configToolbar()
         configRecyclerView()
-        setTextSearchListener()
 
         search("music")
     }
@@ -97,17 +96,6 @@ class HomeFragment : Fragment() {
             adapter.updateList(it)
         })
 
-    }
-
-    private fun setTextSearchListener() {
-        binding.homeTextSearch.setOnKeyListener { view, i, keyEvent ->
-            if (keyEvent.keyCode == KeyEvent.KEYCODE_ENTER) {
-                val textView = view as TextView
-                search(textView.text.toString())
-                Utils.hideKeyboard(view)
-            }
-            false
-        }
     }
 
     private fun openProductFragment(product: Product) {

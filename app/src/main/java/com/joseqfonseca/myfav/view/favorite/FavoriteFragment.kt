@@ -84,29 +84,7 @@ class FavoriteFragment : Fragment() {
             })
         }
 
-
-        /*binding.favoriteToolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.favorite_btn_search -> {
-                    binding.favoriteTextSearch.run {
-                        isVisible = !isVisible
-                        requestFocus()
-                    }
-                    true
-                }
-
-                else -> false
-            }
-        }*/
     }
-
-    /*private fun setTextSearchListener() {
-        binding.favoriteTextSearch.addTextChangedListener(
-            onTextChanged = { text, b, c, d ->
-                favoriteViewModel.filterByWord(text.toString())
-            }
-        )
-    }*/
 
     private fun openProductFragment(product: Product) {
         findNavController().navigate(

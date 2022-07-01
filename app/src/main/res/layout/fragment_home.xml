@@ -20,25 +20,11 @@
         app:menu="@menu/toolbar_home">
     </androidx.appcompat.widget.Toolbar>
 
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/homeTextSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        android:hint="@string/home_text_search"
-        android:inputType="textPersonName"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/homeToolbar" />
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textNotFound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/homeTextSearch"
+        app:layout_constraintTop_toBottomOf="@id/homeToolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"

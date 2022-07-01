@@ -21,7 +21,7 @@ class HomeViewModel(
 
     private fun getListFavoritesLocal(): MutableSet<String> {
         // internal declaration because the favorites may change in another page and need to load each call
-        return sharedPreferences.getStringSet("FAVORITES", mutableSetOf())!!
+        return sharedPreferences.getStringSet("FAVORITES", mutableSetOf())!!.toMutableSet()
     }
 
     fun verifyFavorites() {
