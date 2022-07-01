@@ -16,7 +16,7 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="My Fav"
+        app:title="@string/home_title_toolbar"
         app:menu="@menu/toolbar_home">
     </androidx.appcompat.widget.Toolbar>
 

@@ -3,16 +3,12 @@ package com.joseqfonseca.myfav.view.favorite
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.widget.TextView
-import androidx.compose.ui.input.key.KeyEvent
 import androidx.core.os.bundleOf
-import androidx.core.view.isVisible
-import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.joseqfonseca.myfav.R
 import com.joseqfonseca.myfav.databinding.FragmentFavoriteBinding
-import com.joseqfonseca.myfav.lib.Utils
 import com.joseqfonseca.myfav.model.Product
 
 class FavoriteFragment : Fragment() {
@@ -27,9 +23,9 @@ class FavoriteFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        //setHasOptionsMenu(true)
         configToolbar()
-        setTextSearchListener()
+        //setTextSearchListener()
 
         favoriteViewModel = FavoriteViewModel(activity?.getPreferences(Context.MODE_PRIVATE)!!)
 
@@ -64,7 +60,32 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun configToolbar() {
-        binding.favoriteToolbar.setOnMenuItemClickListener {
+
+        binding.favoriteToolbar.findViewById<SearchView>(R.id.favorite_btn_search).let {
+            it.queryHint = getString(R.string.favorite_text_btnSearch)
+
+            it.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    favoriteViewModel.filterByWord(newText.toString())
+                    return true
+                }
+
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+            })
+
+            it.setOnCloseListener(object : SearchView.OnCloseListener {
+                override fun onClose(): Boolean {
+                    favoriteViewModel.filterByWord("")
+                    return false
+                }
+            })
+        }
+
+
+        /*binding.favoriteToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.favorite_btn_search -> {
                     binding.favoriteTextSearch.run {
@@ -76,16 +97,16 @@ class FavoriteFragment : Fragment() {
 
                 else -> false
             }
-        }
+        }*/
     }
 
-    private fun setTextSearchListener() {
+    /*private fun setTextSearchListener() {
         binding.favoriteTextSearch.addTextChangedListener(
             onTextChanged = { text, b, c, d ->
                 favoriteViewModel.filterByWord(text.toString())
             }
         )
-    }
+    }*/
 
     private fun openProductFragment(product: Product) {
         findNavController().navigate(

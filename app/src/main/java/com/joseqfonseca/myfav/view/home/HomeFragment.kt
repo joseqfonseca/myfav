@@ -3,6 +3,9 @@ package com.joseqfonseca.myfav.view.home
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -46,22 +49,32 @@ class HomeFragment : Fragment() {
     }
 
     private fun configToolbar() {
-        binding.homeToolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.home_btn_search -> {
-                    binding.homeTextSearch.run {
-                        isVisible = !isVisible
-                        requestFocus()
+
+        binding.homeToolbar.let {
+            it.findViewById<SearchView>(R.id.home_btn_search).let { searchView ->
+                searchView.maxWidth = Int.MIN_VALUE
+                searchView.queryHint = getString(R.string.home_text_btnSearch)
+
+                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(word: String?): Boolean {
+                        word?.let {
+                            search(it)
+                            searchView.clearFocus()
+                        }
+                        return false
                     }
-                    true
-                }
 
-                R.id.home_btn_favorite -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_favoriteFragment)
-                    true
-                }
+                    override fun onQueryTextChange(p0: String?): Boolean {
+                        return false
+                    }
+                })
 
-                else -> false
+            }
+
+
+            it.menu.findItem(R.id.home_btn_favorite).setOnMenuItemClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_favoriteFragment)
+                false
             }
         }
     }

@@ -10,4 +10,7 @@
     <string name="product_textDescription">Descrição</string>
     <string name="favorite_titleToolbar">Favoritos</string>
     <string name="favorite_noFavoriteFound">Você não tem nenhum favorito :/</string>
+    <string name="home_title_toolbar">My Meli Favorites</string>
+    <string name="home_text_btnSearch">Buscar no Mercado Livre</string>
+    <string name="favorite_text_btnSearch">Buscar nos favoritos</string>
 </resources>
