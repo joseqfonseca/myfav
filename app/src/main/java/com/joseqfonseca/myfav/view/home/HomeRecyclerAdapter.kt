@@ -3,21 +3,19 @@ package com.joseqfonseca.myfav.view.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.joseqfonseca.myfav.R
-import com.joseqfonseca.myfav.databinding.ItemProductBinding
-import com.joseqfonseca.myfav.model.Product
+import com.joseqfonseca.myfav.databinding.ItemHomeBinding
+import com.joseqfonseca.myfav.model.Category
 import com.squareup.picasso.Picasso
 
 class HomeRecyclerAdapter(
-    val itemListener: (product: Product) -> Unit,
-    val favoriteListener: (productId: String) -> Unit
+    val itemListener: (categoryId: String) -> Unit
 ) : RecyclerView.Adapter<HomeRecyclerAdapter.RecyclerViewHomeViewHolder>() {
 
-    private val productList = mutableListOf<Product>()
+    private val productList = mutableListOf<Category>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHomeViewHolder {
         return RecyclerViewHomeViewHolder(
-            ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -27,7 +25,7 @@ class HomeRecyclerAdapter(
 
     override fun getItemCount(): Int = productList.size!!
 
-    fun updateList(list: List<Product>?) {
+    fun updateList(list: List<Category>?) {
         productList.clear()
         list?.let {
             productList.addAll(it)
@@ -35,21 +33,15 @@ class HomeRecyclerAdapter(
         notifyDataSetChanged()
     }
 
-    inner class RecyclerViewHomeViewHolder(val item: ItemProductBinding) :
+    inner class RecyclerViewHomeViewHolder(val item: ItemHomeBinding) :
         RecyclerView.ViewHolder(item.root) {
 
-        fun bind(product: Product) {
-            item.itemProductTextTitle.text = product.title
-            item.itemProductTextPrice.text = String.format("%.2f", product.price.toDouble())
-            item.itemProductBtnFavorite.setImageResource(if (product.isFavorite) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off)
-            Picasso.get().load(product.secure_thumbnail).into(item.itemProductImageView)
+        fun bind(category: Category) {
+            item.itemHomeTitle.text = category.name
+            Picasso.get().load(category.picture).into(item.itemHomeImage)
 
             item.root.setOnClickListener {
-                itemListener(product)
-            }
-
-            item.itemProductBtnFavorite.setOnClickListener {
-                favoriteListener(product.id)
+                itemListener(category.name)
             }
         }
 

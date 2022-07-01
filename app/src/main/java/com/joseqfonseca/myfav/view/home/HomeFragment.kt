@@ -1,20 +1,13 @@
 package com.joseqfonseca.myfav.view.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.SearchView
-import android.widget.TextView
 import androidx.core.os.bundleOf
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.joseqfonseca.myfav.R
 import com.joseqfonseca.myfav.databinding.FragmentHomeBinding
-import com.joseqfonseca.myfav.lib.Utils
-import com.joseqfonseca.myfav.model.Product
 
 class HomeFragment : Fragment() {
 
@@ -27,12 +20,12 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        homeViewModel = HomeViewModel(activity?.getPreferences(Context.MODE_PRIVATE)!!)
+        homeViewModel = HomeViewModel()
 
         configToolbar()
         configRecyclerView()
 
-        search("music")
+        loadCategories()
     }
 
     override fun onCreateView(
@@ -44,7 +37,7 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        homeViewModel.verifyFavorites()
+        loadCategories()
     }
 
     private fun configToolbar() {
@@ -57,7 +50,7 @@ class HomeFragment : Fragment() {
                 searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(word: String?): Boolean {
                         word?.let {
-                            search(it)
+                            openSearchFragment(it)
                             searchView.clearFocus()
                         }
                         return false
@@ -70,26 +63,26 @@ class HomeFragment : Fragment() {
 
             }
 
-
             it.menu.findItem(R.id.home_btn_favorite).setOnMenuItemClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_favoriteFragment)
+                findNavController().navigate(R.id.action_searchFragment_to_favoriteFragment)
                 false
             }
         }
     }
 
     private fun configRecyclerView() {
-        val recycler = binding.recyclerView
+        val recycler = binding.homeRecyclerView
 
         val adapter = HomeRecyclerAdapter(
-            { openProductFragment(it) },
-            { setFavorite(it) }
+            { openSearchFragment(it) }
         )
+
         recycler.adapter = adapter
 
-        homeViewModel._listProduct.observe(this, {
+        homeViewModel._listCategory.observe(this, {
             it?.let {
-                binding.textNotFound.visibility = if (it.size > 0) View.GONE else View.VISIBLE
+                binding.homeTextNotFound.visibility = if (it.size > 0) View.GONE else View.VISIBLE
+                binding.homeTextEnjoy.visibility = if (it.size > 0) View.VISIBLE else View.GONE
                 binding.homeLoading.visibility = View.GONE
             }
 
@@ -98,21 +91,18 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun openProductFragment(product: Product) {
+    private fun openSearchFragment(categoryName: String) {
         findNavController().navigate(
-            R.id.action_homeFragment_to_productFragment,
-            bundleOf(Pair("product", product))
+            R.id.action_homeFragment_to_searchFragment,
+            bundleOf(Pair("categoryName", categoryName))
         )
     }
 
-    private fun setFavorite(productId: String) {
-        homeViewModel.setFavorite(productId)
-    }
 
-    private fun search(word: String) {
+    private fun loadCategories() {
         binding.homeLoading.visibility = View.VISIBLE
 
-        homeViewModel.searchProductByFirstCategoryPredict(word)
+        homeViewModel.loadCategories()
     }
 
 }

@@ -13,4 +13,12 @@ class CategoryRetrofitRepository : CategoryRepository {
     override suspend fun getByPreditor(word: String): List<Category> {
         return retrofit.getByPreditor(word)
     }
+
+    override suspend fun getAllCategories(): List<Category> {
+        return retrofit.getAllCategories()
+    }
+
+    override suspend fun getCategoryById(categoryId: String): Category? {
+        return retrofit.getCategoryById(categoryId)
+    }
 }
