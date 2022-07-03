@@ -15,9 +15,10 @@ class ProductViewModel @Inject constructor(
     private val application: Application
 ) : ViewModel() {
 
-    private val sharedPreferences = application.getSharedPreferences("FAVORITES", Context.MODE_PRIVATE)
+    private val sharedPreferences =
+        application.getSharedPreferences("FAVORITES", Context.MODE_PRIVATE)
 
-    lateinit var product : Product
+    lateinit var product: Product
 
     private val isFavorite = MutableLiveData<Boolean>()
 
@@ -45,16 +46,16 @@ class ProductViewModel @Inject constructor(
     fun setFavorite() {
         val listFavorites = getListFavoritesLocal()
 
-        val action = listFavorites.remove(product.id)
+        val action = listFavorites.add(product.id)
 
         if (!action)
-            listFavorites.add(product.id)
+            listFavorites.remove(product.id)
 
         sharedPreferences.edit().putStringSet("FAVORITES", listFavorites).apply()
 
-        product.isFavorite = !action
+        product.isFavorite = action
 
-        isFavorite.value = !action
+        isFavorite.value = action
     }
 
 }

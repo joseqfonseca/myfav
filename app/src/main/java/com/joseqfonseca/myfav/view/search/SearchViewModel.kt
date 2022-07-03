@@ -43,17 +43,17 @@ class SearchViewModel @Inject constructor(
     fun setFavorite(productId: String) {
         val listFavorites = getListFavoritesLocal()
 
-        val action = listFavorites.remove(productId)
+        val action = listFavorites.add(productId)
 
         if (!action)
-            listFavorites.add(productId)
+            listFavorites.remove(productId)
 
         sharedPreferences.edit().putStringSet("FAVORITES", listFavorites).apply()
 
         listProduct.value = listProduct.value?.apply {
             this.forEach {
                 if (it.id == productId)
-                    it.isFavorite = !action
+                    it.isFavorite = action
             }
         }
     }
