@@ -4,8 +4,9 @@ import com.joseqfonseca.myfav.data.retrofit.ProductRetrofit
 import com.joseqfonseca.myfav.lib.Connection
 import com.joseqfonseca.myfav.model.Product
 import com.joseqfonseca.myfav.model.ProductResult
+import javax.inject.Inject
 
-class ProductRetrofitRepository : ProductRepository {
+class ProductRetrofitRepository @Inject constructor() : ProductRepository {
     val retrofit = Connection.retrofitBuild.create(ProductRetrofit::class.java)
 
     override suspend fun searchByCategoryId(categoryId: String): List<Product> {

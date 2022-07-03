@@ -20,6 +20,7 @@
         <entry key="app/src/main/res/menu/toolbar_favorite.xml" value="0.33421052631578946" />
         <entry key="app/src/main/res/menu/toolbar_home.xml" value="0.33421052631578946" />
         <entry key="app/src/main/res/menu/toolbar_product.xml" value="0.33421052631578946" />
+        <entry key="app/src/main/res/menu/toolbar_search.xml" value="0.396875" />
       </map>
     </option>
   </component>

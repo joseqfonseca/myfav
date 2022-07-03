@@ -6,23 +6,26 @@ import android.view.*
 import android.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.joseqfonseca.myfav.R
 import com.joseqfonseca.myfav.databinding.FragmentSearchBinding
 import com.joseqfonseca.myfav.model.Product
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     private val binding: FragmentSearchBinding by lazy {
         FragmentSearchBinding.inflate(layoutInflater)
     }
 
-    lateinit var searchViewModel: SearchViewModel
+    private val searchViewModel: SearchViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        searchViewModel = SearchViewModel(activity?.getPreferences(Context.MODE_PRIVATE)!!)
+        //searchViewModel = SearchViewModel(activity?.getPreferences(Context.MODE_PRIVATE)!!)
 
         configToolbar()
         configRecyclerView()

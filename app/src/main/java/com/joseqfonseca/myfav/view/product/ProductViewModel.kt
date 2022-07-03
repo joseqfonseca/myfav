@@ -1,15 +1,23 @@
 package com.joseqfonseca.myfav.view.product
 
+import android.app.Application
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.joseqfonseca.myfav.model.Product
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ProductViewModel(
-    val product: Product,
-    private val sharedPreferences: SharedPreferences
+@HiltViewModel
+class ProductViewModel @Inject constructor(
+    private val application: Application
 ) : ViewModel() {
+
+    private val sharedPreferences = application.getSharedPreferences("FAVORITES", Context.MODE_PRIVATE)
+
+    lateinit var product : Product
 
     private val isFavorite = MutableLiveData<Boolean>()
 
@@ -17,10 +25,6 @@ class ProductViewModel(
         get() {
             return isFavorite
         }
-
-    init {
-        //verifyFavorite()
-    }
 
     private fun getListFavoritesLocal(): MutableSet<String> {
         // internal declaration because the favorites may change in another page and need to load each call

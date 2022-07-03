@@ -1,20 +1,19 @@
 package com.joseqfonseca.myfav.view.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.joseqfonseca.myfav.model.Category
 import com.joseqfonseca.myfav.model.Product
 import com.joseqfonseca.myfav.service.CategoryService
 import com.joseqfonseca.myfav.service.ProductService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
-
-    private val categoryService: CategoryService by lazy {
-        CategoryService()
-    }
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val handle: SavedStateHandle,
+    private val categoryService: CategoryService
+): ViewModel() {
 
     private val listCategory = MutableLiveData<List<Category>>()
 

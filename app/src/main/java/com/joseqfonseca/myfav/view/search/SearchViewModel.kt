@@ -1,19 +1,26 @@
 package com.joseqfonseca.myfav.view.search
 
+import android.app.Application
+import android.content.Context
 import android.content.SharedPreferences
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.joseqfonseca.myfav.model.Product
 import com.joseqfonseca.myfav.service.ProductService
+import dagger.hilt.android.internal.Contexts
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import kotlin.coroutines.coroutineContext
 
-class SearchViewModel(
-    private val sharedPreferences: SharedPreferences
+@HiltViewModel
+class SearchViewModel @Inject constructor(
+    private val application: Application,
+    private val productService: ProductService
 ) : ViewModel() {
 
-    private val productService = ProductService()
+    private val sharedPreferences = application.getSharedPreferences("FAVORITES", Context.MODE_PRIVATE)
+    //private val productService = ProductService()
 
     private val listProduct = MutableLiveData<List<Product>>()
 
@@ -57,7 +64,6 @@ class SearchViewModel(
 
         //loading from api and verifying if is a favorite after return form api
         viewModelScope.launch {
-            listProduct.value = null
             listProduct.value =
                 productService.searchProductByFirstCategoryPredict(word).apply {
                     this.forEach {

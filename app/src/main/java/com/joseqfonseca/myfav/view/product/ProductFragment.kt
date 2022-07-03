@@ -6,19 +6,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.joseqfonseca.myfav.R
 import com.joseqfonseca.myfav.databinding.FragmentProductBinding
 import com.joseqfonseca.myfav.model.Product
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProductFragment : Fragment() {
 
     val binding: FragmentProductBinding by lazy {
         FragmentProductBinding.inflate(layoutInflater)
     }
 
-    lateinit var productViewModel: ProductViewModel
+    private val productViewModel : ProductViewModel by viewModels()
 
     private var pointerPicture = 0
 
@@ -29,12 +32,13 @@ class ProductFragment : Fragment() {
         setListeners()
 
         val product = arguments?.get("product") as Product
+        productViewModel.product = product
 
         //only render if a product exists passed throught constructor when navigate to this fragment
         product?.let {
 
-            productViewModel =
-                ProductViewModel(it, activity?.getPreferences(Context.MODE_PRIVATE)!!)
+            //productViewModel =
+                //ProductViewModel(it, activity?.getPreferences(Context.MODE_PRIVATE)!!)
 
             productViewModel._isFavorite.observe(this, {
                 updateFavoriteIcon(it)

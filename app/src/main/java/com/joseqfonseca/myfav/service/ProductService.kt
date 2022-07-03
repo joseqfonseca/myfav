@@ -5,12 +5,14 @@ import com.joseqfonseca.myfav.model.Product
 import com.joseqfonseca.myfav.repository.CategoryRetrofitRepository
 import com.joseqfonseca.myfav.repository.ProductRetrofitRepository
 import retrofit2.HttpException
+import javax.inject.Inject
 
-class ProductService {
+class ProductService @Inject constructor(
+    private val productRepository: ProductRetrofitRepository,
+    private val categoryRepository: CategoryRetrofitRepository
+) {
 
     private val LOG_TAG = "PRODUCTSERVICE"
-    private val productRepository = ProductRetrofitRepository()
-    private val categoryRepository = CategoryRetrofitRepository()
 
     suspend fun searchProductByFirstCategoryPredict(word: String): List<Product> {
         var products = emptyList<Product>()

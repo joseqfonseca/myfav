@@ -6,28 +6,27 @@ import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.joseqfonseca.myfav.R
 import com.joseqfonseca.myfav.databinding.FragmentFavoriteBinding
 import com.joseqfonseca.myfav.model.Product
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoriteFragment : Fragment() {
 
     private val binding: FragmentFavoriteBinding by lazy {
         FragmentFavoriteBinding.inflate(layoutInflater)
     }
 
-    private lateinit var favoriteViewModel: FavoriteViewModel
+    private val favoriteViewModel: FavoriteViewModel by viewModels()
 
     private lateinit var adapter: FavoriteRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setHasOptionsMenu(true)
         configToolbar()
-        //setTextSearchListener()
-
-        favoriteViewModel = FavoriteViewModel(activity?.getPreferences(Context.MODE_PRIVATE)!!)
 
         adapter = FavoriteRecyclerAdapter(
             { openProductFragment(it) },

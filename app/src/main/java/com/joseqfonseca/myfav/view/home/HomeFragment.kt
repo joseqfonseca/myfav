@@ -5,22 +5,25 @@ import android.view.*
 import android.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.joseqfonseca.myfav.R
 import com.joseqfonseca.myfav.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private val binding: FragmentHomeBinding by lazy {
         FragmentHomeBinding.inflate(layoutInflater)
     }
 
-    lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModels()
+
+    lateinit private var adapter: HomeRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        homeViewModel = HomeViewModel()
 
         configToolbar()
         configRecyclerView()
@@ -64,7 +67,7 @@ class HomeFragment : Fragment() {
             }
 
             it.menu.findItem(R.id.home_btn_favorite).setOnMenuItemClickListener {
-                findNavController().navigate(R.id.action_searchFragment_to_favoriteFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_favoriteFragment)
                 false
             }
         }
@@ -73,7 +76,7 @@ class HomeFragment : Fragment() {
     private fun configRecyclerView() {
         val recycler = binding.homeRecyclerView
 
-        val adapter = HomeRecyclerAdapter(
+        adapter = HomeRecyclerAdapter(
             { openSearchFragment(it) }
         )
 
@@ -97,7 +100,6 @@ class HomeFragment : Fragment() {
             bundleOf(Pair("categoryName", categoryName))
         )
     }
-
 
     private fun loadCategories() {
         binding.homeLoading.visibility = View.VISIBLE

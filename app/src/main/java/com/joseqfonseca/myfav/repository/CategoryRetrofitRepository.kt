@@ -4,8 +4,9 @@ import com.joseqfonseca.myfav.data.retrofit.CategoryRetrofit
 import com.joseqfonseca.myfav.lib.Connection
 import com.joseqfonseca.myfav.model.Category
 import com.joseqfonseca.myfav.model.ProductResult
+import javax.inject.Inject
 
-class CategoryRetrofitRepository : CategoryRepository {
+class CategoryRetrofitRepository @Inject constructor() : CategoryRepository {
 
     val retrofit = Connection.retrofitBuild.create(CategoryRetrofit::class.java)
     //val token = Connection.token
