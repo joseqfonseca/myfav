@@ -53,7 +53,10 @@ class FavoriteViewModel @Inject constructor(
 
         sharedPreferences.edit().putStringSet("FAVORITES", listFavoritesLocal).apply()
 
-        loadFavorites()
+        //loadFavorites()
+        listFavorites.value = listFavorites.value?.filter {
+            it.id != productId
+        }
     }
 
     fun filterByWord(word: String) {
