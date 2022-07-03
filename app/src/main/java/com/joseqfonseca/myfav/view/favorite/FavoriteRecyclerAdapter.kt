@@ -8,8 +8,8 @@ import com.joseqfonseca.myfav.model.Product
 import com.squareup.picasso.Picasso
 
 class FavoriteRecyclerAdapter(
-    val itemListener: (product: Product) -> Unit,
-    val removeListener: (productId: String) -> Unit
+    private val itemListener: (product: Product) -> Unit,
+    private val removeListener: (productId: String) -> Unit
 ) : RecyclerView.Adapter<FavoriteRecyclerAdapter.FavoriteRecyclerVW>() {
 
     private val listFavorites = mutableListOf<Product>()

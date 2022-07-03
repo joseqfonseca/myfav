@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ProductFragment : Fragment() {
 
-    val binding: FragmentProductBinding by lazy {
+    private val binding: FragmentProductBinding by lazy {
         FragmentProductBinding.inflate(layoutInflater)
     }
 
@@ -34,12 +34,7 @@ class ProductFragment : Fragment() {
         val product = arguments?.get("product") as Product
         productViewModel.product = product
 
-        //only render if a product exists passed throught constructor when navigate to this fragment
-        product?.let {
-
-            //productViewModel =
-                //ProductViewModel(it, activity?.getPreferences(Context.MODE_PRIVATE)!!)
-
+        product.let {
             productViewModel._isFavorite.observe(this, {
                 updateFavoriteIcon(it)
             })

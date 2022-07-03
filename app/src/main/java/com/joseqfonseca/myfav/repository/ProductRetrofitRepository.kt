@@ -1,25 +1,25 @@
 package com.joseqfonseca.myfav.repository
 
 import com.joseqfonseca.myfav.data.retrofit.ProductRetrofit
-import com.joseqfonseca.myfav.lib.Connection
+import com.joseqfonseca.myfav.lib.Constants
 import com.joseqfonseca.myfav.model.Product
-import com.joseqfonseca.myfav.model.ProductResult
 import javax.inject.Inject
 
-class ProductRetrofitRepository @Inject constructor() : ProductRepository {
-    val retrofit = Connection.retrofitBuild.create(ProductRetrofit::class.java)
+class ProductRetrofitRepository @Inject constructor(
+    private val productRetrofit: ProductRetrofit
+) : ProductRepository {
 
     override suspend fun searchByCategoryId(categoryId: String): List<Product> {
-        return retrofit.searchProductByCategoryId(categoryId).results
+        return productRetrofit.searchProductByCategoryId(categoryId).results
     }
 
     override suspend fun getProductsByIds(productIds: String): List<Product> {
-        return retrofit.getProductsByIds(productIds).map {
+        return productRetrofit.getProductsByIds(productIds).map {
             it.body
         }
     }
 
     override suspend fun getHighlightsByCategory(categoryId: String): List<Product> {
-        return retrofit.getHighlightsByCategory(categoryId,Connection.getTokenByRetrofit()).content
+        return productRetrofit.getHighlightsByCategory(categoryId,Constants.TOKEN).content
     }
 }

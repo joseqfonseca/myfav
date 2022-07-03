@@ -9,8 +9,8 @@ import com.joseqfonseca.myfav.model.Product
 import com.squareup.picasso.Picasso
 
 class SearchRecyclerAdapter(
-    val itemListener: (product: Product) -> Unit,
-    val favoriteListener: (productId: String) -> Unit
+    private val itemListener: (product: Product) -> Unit,
+    private val favoriteListener: (productId: String) -> Unit
 ) : RecyclerView.Adapter<SearchRecyclerAdapter.RecyclerViewHomeViewHolder>() {
 
     private val productList = mutableListOf<Product>()
@@ -25,7 +25,7 @@ class SearchRecyclerAdapter(
         holder.bind(productList[position])
     }
 
-    override fun getItemCount(): Int = productList.size!!
+    override fun getItemCount(): Int = productList.size
 
     fun updateList(list: List<Product>?) {
         productList.clear()

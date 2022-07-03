@@ -7,7 +7,6 @@ import dagger.Provides
 import retrofit2.HttpException
 import javax.inject.Inject
 
-
 class CategoryService @Inject constructor(
     private val categoryRepository: CategoryRetrofitRepository
 ) {

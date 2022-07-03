@@ -8,7 +8,7 @@ import com.joseqfonseca.myfav.model.Category
 import com.squareup.picasso.Picasso
 
 class HomeRecyclerAdapter(
-    val itemListener: (categoryId: String) -> Unit
+    private val itemListener: (categoryId: String) -> Unit
 ) : RecyclerView.Adapter<HomeRecyclerAdapter.RecyclerViewHomeViewHolder>() {
 
     private val productList = mutableListOf<Category>()

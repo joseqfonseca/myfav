@@ -20,7 +20,6 @@ class SearchViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val sharedPreferences = application.getSharedPreferences("FAVORITES", Context.MODE_PRIVATE)
-    //private val productService = ProductService()
 
     private val listProduct = MutableLiveData<List<Product>>()
 

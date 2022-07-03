@@ -1,25 +1,22 @@
 package com.joseqfonseca.myfav.repository
 
 import com.joseqfonseca.myfav.data.retrofit.CategoryRetrofit
-import com.joseqfonseca.myfav.lib.Connection
 import com.joseqfonseca.myfav.model.Category
-import com.joseqfonseca.myfav.model.ProductResult
 import javax.inject.Inject
 
-class CategoryRetrofitRepository @Inject constructor() : CategoryRepository {
-
-    val retrofit = Connection.retrofitBuild.create(CategoryRetrofit::class.java)
-    //val token = Connection.token
+class CategoryRetrofitRepository @Inject constructor(
+    private val categoryRetrofit: CategoryRetrofit
+) : CategoryRepository {
 
     override suspend fun getByPreditor(word: String): List<Category> {
-        return retrofit.getByPreditor(word)
+        return categoryRetrofit.getByPreditor(word)
     }
 
     override suspend fun getAllCategories(): List<Category> {
-        return retrofit.getAllCategories()
+        return categoryRetrofit.getAllCategories()
     }
 
     override suspend fun getCategoryById(categoryId: String): Category? {
-        return retrofit.getCategoryById(categoryId)
+        return categoryRetrofit.getCategoryById(categoryId)
     }
 }

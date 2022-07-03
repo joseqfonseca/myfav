@@ -25,8 +25,6 @@ class SearchFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //searchViewModel = SearchViewModel(activity?.getPreferences(Context.MODE_PRIVATE)!!)
-
         configToolbar()
         configRecyclerView()
 
