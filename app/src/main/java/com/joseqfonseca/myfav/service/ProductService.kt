@@ -26,6 +26,7 @@ class ProductService @Inject constructor(
                 .joinToString()
 
             products = getProductsByIds(highlightsProductsIds)
+
         } catch (e: Exception) {
             Log.e(LOG_TAG, "searchProductByFirstCategoryPredict() : ${e.message}")
         }
@@ -67,6 +68,18 @@ class ProductService @Inject constructor(
         }
 
         return list
+    }
+
+    suspend fun getDescriptionById(productId: String): String {
+        var plain_text = ""
+
+        try {
+            plain_text = productRepository.getDescriptionById(productId)
+        } catch (e: HttpException) {
+            Log.e(LOG_TAG, "getDescriptionById() : ${e.response()}")
+        }
+
+        return plain_text
     }
 
     suspend fun getFavorites(listFavoritesLocal: Set<String>): List<Product> {

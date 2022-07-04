@@ -20,6 +20,10 @@ class ProductRetrofitRepository @Inject constructor(
     }
 
     override suspend fun getHighlightsByCategory(categoryId: String): List<Product> {
-        return productRetrofit.getHighlightsByCategory(categoryId,Constants.TOKEN).content
+        return productRetrofit.getHighlightsByCategory(categoryId, Constants.TOKEN).content
+    }
+
+    override suspend fun getDescriptionById(productId: String): String {
+        return productRetrofit.getDescriptionById(productId).plain_text
     }
 }

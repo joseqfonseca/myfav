@@ -1,6 +1,5 @@
 package com.joseqfonseca.myfav.view.product
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,7 +20,7 @@ class ProductFragment : Fragment() {
         FragmentProductBinding.inflate(layoutInflater)
     }
 
-    private val productViewModel : ProductViewModel by viewModels()
+    private val productViewModel: ProductViewModel by viewModels()
 
     private var pointerPicture = 0
 
@@ -34,13 +33,17 @@ class ProductFragment : Fragment() {
         val product = arguments?.get("product") as Product
         productViewModel.product = product
 
-        product.let {
-            productViewModel._isFavorite.observe(this, {
-                updateFavoriteIcon(it)
-            })
+        productViewModel._isFavorite.observe(this, {
+            updateFavoriteIcon(it)
+        })
 
-            bindingComponnents(productViewModel.product)
-        }
+        productViewModel._description.observe(this, {
+            bindDescription(it)
+        })
+
+        bindingComponnents(productViewModel.product)
+
+        productViewModel.loadDescription()
     }
 
     override fun onCreateView(
@@ -87,8 +90,19 @@ class ProductFragment : Fragment() {
 
         //append the description text with all of product attributes
         product.attributes.forEach {
-            binding.productTextDescripton.append("${it.name}: ${it.value_name}\n")
+            binding.productTextAttributes.append("${it.name}: ${it.value_name}\n")
         }
+    }
+
+    private fun bindDescription(description: String) {
+        //binding product description
+        binding.productTextDescripton.let {
+            it.text = description
+            it.visibility = View.VISIBLE
+        }
+
+        //hide loading
+        binding.productDescriptionloading.visibility = View.GONE
     }
 
     private fun setListeners() {

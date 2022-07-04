@@ -23,4 +23,10 @@ interface ProductRetrofit {
         @Query("ids") productId: String,
         @Header("Authorization") token: String = ""
     ): List<ProductResult>
+
+    @GET("items/{id}/description")
+    suspend fun getDescriptionById(
+        @Path("id") productId: String,
+        @Header("Authorization") token: String = ""
+    ): ProductResult
 }
