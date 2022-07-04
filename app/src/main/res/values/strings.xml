@@ -16,4 +16,5 @@
     <string name="global_currency">R$</string>
     <string name="search_textNotFound">Nenhum produto encontrado :/</string>
     <string name="home_textEnjoy">Aproveite as ofertas!</string>
+    <string name="product_titleAttributes">Características</string>
 </resources>

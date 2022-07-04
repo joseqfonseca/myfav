@@ -140,6 +140,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/product_textPrice" />
 
+        <View
+            android:id="@+id/product_dividerDescription"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@id/product_textPriceParcel"
+            app:layout_constraintBottom_toTopOf="@id/product_textTitleDescripton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/product_textTitleDescripton"
             android:layout_width="wrap_content"
@@ -150,7 +164,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product_textPriceParcel" />
+            app:layout_constraintTop_toBottomOf="@id/product_dividerDescription" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/product_textDescripton"
@@ -178,17 +192,31 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:indicatorSize="40dp"/>
 
+        <View
+            android:id="@+id/product_dividerAttributes"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@id/product_textDescripton"
+            app:layout_constraintBottom_toTopOf="@id/product_textTitleAttributes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/product_textTitleAttributes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="50dp"
-            android:text="Características"
+            android:text="@string/product_titleAttributes"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product_textDescripton" />
+            app:layout_constraintTop_toBottomOf="@id/product_dividerAttributes" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/product_textAttributes"
