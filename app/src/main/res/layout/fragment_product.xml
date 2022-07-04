@@ -188,6 +188,7 @@
             android:indeterminate="true"
             android:layout_marginTop="5dp"
             app:layout_constraintTop_toBottomOf="@id/product_textTitleDescripton"
+            app:layout_constraintBottom_toTopOf="@id/product_dividerAttributes"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:indicatorSize="40dp"/>
