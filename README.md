@@ -8,7 +8,8 @@
 ### Estrutura
 O aplicativo foi desenvolvido para dispositivos **Android** usando a linguagem Kotlin.
 
-Alguns padrões abordados no desenvolvimento:
+Desenvolvimento baseado em:
+- Navigation
 - Camadas (View, ViewModel, Service, Repository, Model)
 - Injeção de dependência
 
