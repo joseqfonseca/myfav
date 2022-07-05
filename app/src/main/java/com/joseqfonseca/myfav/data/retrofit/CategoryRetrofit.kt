@@ -11,17 +11,14 @@ interface CategoryRetrofit {
     @GET("sites/MLB/domain_discovery/search")
     suspend fun getByPreditor(
         @Query("q") word: String,
-        @Header("Authorization") token: String = ""
     ): List<Category>
 
     @GET("sites/MLB/categories")
     suspend fun getAllCategories(
-        @Header("Authorization") token: String = ""
     ): List<Category>
 
     @GET("categories/{id}")
     suspend fun getCategoryById(
         @Path("id") categoryId: String,
-        @Header("Authorization") token: String = ""
     ): Category?
 }
