@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.product.ProductFragment">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/homeToolbar"
+            layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/toolbar_product"
+            app:title="@string/product_titleToolbar"></androidx.appcompat.widget.Toolbar>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/homeToolbar"
+            tools:text="Title product description" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/product_btnPreviousImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="#00FFFFFF"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:layout_constraintBottom_toBottomOf="@id/product_imageProduct"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/product_imageProduct" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/product_imageProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            app:layout_constraintEnd_toStartOf="@id/product_btnNextImage"
+            app:layout_constraintStart_toEndOf="@id/product_btnPreviousImage"
+            app:layout_constraintTop_toBottomOf="@id/product_textTitle"
+            app:srcCompat="@drawable/ic_baseline_no_photography_24" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/product_btnNextImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="#00FFFFFF"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            app:layout_constraintBottom_toBottomOf="@id/product_imageProduct"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/product_imageProduct" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textNumberCurrentPicture"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/product_textTotalPicture"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_imageProduct"
+            android:textAlignment="textEnd"
+            android:text="-" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textTotalPicture"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/product_textNumberCurrentPicture"
+            app:layout_constraintTop_toBottomOf="@id/product_imageProduct"
+            android:text="/-" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaa_bold"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/product_textPrice"
+            app:layout_constraintTop_toBottomOf="@id/product_textNumberCurrentPicture"
+            android:layout_marginTop="20dp"
+            android:text="@string/global_currency" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/product_textCurrency"
+            app:layout_constraintTop_toBottomOf="@id/product_textNumberCurrentPicture"
+            tools:text="2.500,00" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/product_btnFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="#00FFFFFF"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_favorite_off"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_textNumberCurrentPicture" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textPriceParcel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="10x 99,00 sem juros"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_textPrice" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/product_imageMercadoPago"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/product_textPriceParcel"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_mercado_pago"
+            app:layout_constraintWidth="100dp"
+            app:layout_constraintHeight="60dp"/>
+
+        <View
+            android:id="@+id/product_dividerDescription"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@id/product_imageMercadoPago"
+            app:layout_constraintBottom_toTopOf="@id/product_textTitleDescripton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textTitleDescripton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/product_textDescription"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_dividerDescription" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textDescripton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:paddingBottom="20dp"
+            android:lineSpacingExtra="10sp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_textTitleDescripton"
+            android:visibility="gone"/>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/product_descriptionloading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@id/product_textTitleDescripton"
+            app:layout_constraintBottom_toTopOf="@id/product_dividerAttributes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:indicatorSize="40dp"/>
+
+        <View
+            android:id="@+id/product_dividerAttributes"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@id/product_textDescripton"
+            app:layout_constraintBottom_toTopOf="@id/product_textTitleAttributes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textTitleAttributes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/product_titleAttributes"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_dividerAttributes" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textAttributes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:lineSpacingExtra="10sp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_textTitleAttributes" />
+
+        <View
+            android:id="@+id/product_dividerWarranty"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@id/product_textAttributes"
+            app:layout_constraintBottom_toTopOf="@id/product_textTitleWarranty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textTitleWarranty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/product_titleWarranty"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_dividerWarranty" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textWarranty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:paddingBottom="20dp"
+            android:lineSpacingExtra="10sp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_textTitleWarranty" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

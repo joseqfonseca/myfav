@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">My Meli Favorites</string>
+    <string name="app_name">My Fav</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="icon_menu_favorites">Favoritos</string>
+    <string name="icon_menu_search">Busca</string>
+    <string name="home_text_search">Digite aqui!</string>
+    <string name="home_text_notFound">Nenhuma categoria encontrada :/</string>
+    <string name="product_titleToolbar">Produto</string>
+    <string name="product_textDescription">Descrição</string>
+    <string name="favorite_titleToolbar">Favoritos</string>
+    <string name="favorite_noFavoriteFound">Você não tem nenhum favorito :/</string>
+    <string name="home_title_toolbar">My Meli Favorites</string>
+    <string name="home_text_btnSearch">Buscar no Mercado Livre</string>
+    <string name="favorite_text_btnSearch">Buscar nos favoritos</string>
+    <string name="global_currency">R$</string>
+    <string name="search_textNotFound">Nenhum produto encontrado :/</string>
+    <string name="home_textEnjoy">Aproveite as ofertas!</string>
+    <string name="product_titleAttributes">Características</string>
+    <string name="product_titleWarranty">Garantia</string>
 </resources>
