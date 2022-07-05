@@ -3,20 +3,26 @@
 *My Meli Favorites* é um aplicativo que te ajuda a gerenciar os seus itens favoritos no mundo de milhares de opções do Meli.
 
 
-## Estrutura/Tecnologias
+## Estrutura, Fluxo e Bibliotecas
 
+### Estrutura
 O aplicativo foi desenvolvido para dispositivos **Android** usando a linguagem Kotlin.
 
 Alguns padrões abordados no desenvolvimento:
 - Camadas (View, ViewModel, Service, Repository, Model)
 - Injeção de dependência
 
-Bibliotecas externas:
-- Retrofit (com.squareup.retrofit2:retrofit)
-- OkHttp (com.squareup.okhttp3:okhttp)
-- Gson (com.squareup.retrofit2:converter-gson)
-- Picasso - Renderizador de imagens (com.squareup.picasso:picasso)
-- Hilt - Injeção de  dependência (com.google.dagger:hilt-android)
+### Fluxo da aplicação
+
+<img width="714" alt="Captura de Tela 2022-07-05 às 13 07 36" src="https://user-images.githubusercontent.com/107072228/177370696-5b2c05f6-c9c1-4ee7-b8aa-5040779f1b7b.png">
+
+
+### Bibliotecas
+	- Retrofit (com.squareup.retrofit2:retrofit)
+	- OkHttp (com.squareup.okhttp3:okhttp)
+	- Gson (com.squareup.retrofit2:converter-gson)
+	- Picasso - Renderizador de imagens (com.squareup.picasso:picasso)
+	- Hilt - Injeção de  dependência (com.google.dagger:hilt-android)
 
 ## O Aplicativo
 
@@ -42,3 +48,4 @@ Tela com informações, imagens e detalhes do item selecionado. Nessa tela você
 
 Tela onde você pode acessar os produtos salvos anteriormente e também removê-los dos favoritos. Você também tem um filtro de busca por palavra para achar um favorito rapidamente.
 
+Enjoy it!
