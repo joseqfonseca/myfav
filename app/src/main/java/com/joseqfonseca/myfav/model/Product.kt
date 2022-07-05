@@ -15,9 +15,10 @@ class Product(
     val type: String,
     val available_quantity: String,
     val condition: String,
-    val accepts_mercadopago: String,
+    val accepts_mercadopago: Boolean,
     val pictures: @RawValue List<ProductPicture>,
     val attributes: @RawValue List<ProductAttribute>,
     var isFavorite: Boolean,
-    var plain_text: String
+    var plain_text: String,
+    val warranty: String
 ) : Parcelable

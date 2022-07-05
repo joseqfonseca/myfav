@@ -140,12 +140,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/product_textPrice" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/product_imageMercadoPago"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/product_textPriceParcel"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_mercado_pago"
+            app:layout_constraintWidth="100dp"
+            app:layout_constraintHeight="60dp"/>
+
         <View
             android:id="@+id/product_dividerDescription"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="?android:attr/listDivider"
-            app:layout_constraintTop_toBottomOf="@id/product_textPriceParcel"
+            app:layout_constraintTop_toBottomOf="@id/product_imageMercadoPago"
             app:layout_constraintBottom_toTopOf="@id/product_textTitleDescripton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -226,12 +236,51 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            android:paddingBottom="20dp"
             android:lineSpacingExtra="10sp"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/product_textTitleAttributes" />
+
+        <View
+            android:id="@+id/product_dividerWarranty"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@id/product_textAttributes"
+            app:layout_constraintBottom_toTopOf="@id/product_textTitleWarranty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textTitleWarranty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/product_titleWarranty"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_dividerWarranty" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_textWarranty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:paddingBottom="20dp"
+            android:lineSpacingExtra="10sp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_textTitleWarranty" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

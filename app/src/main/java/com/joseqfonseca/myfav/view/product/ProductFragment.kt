@@ -72,9 +72,6 @@ class ProductFragment : Fragment() {
 
     private fun bindingComponnents(product: Product) {
         binding.productTextTitle.text = product.title
-        binding.productTextPrice.text = String.format("%.2f", product.price.toDouble())
-        binding.productTextPriceParcel.text =
-            "10x " + String.format("%.2f", product.price.toDouble().div(10)) + " sem juros"
 
         //rendering the first picture
         product.pictures[0]?.let {
@@ -84,6 +81,14 @@ class ProductFragment : Fragment() {
             binding.productTextTotalPicture.text = "/${product.pictures.size}"
         }
 
+        //binding price
+        binding.productTextPrice.text = String.format("%.2f", product.price.toDouble())
+        binding.productTextPriceParcel.text =
+            "10x " + String.format("%.2f", product.price.toDouble().div(10)) + " sem juros"
+
+        //binding accepts mercao pago image
+        binding.productImageMercadoPago.visibility =
+            if (product.accepts_mercadopago) View.VISIBLE else View.INVISIBLE
 
         //setting the favorite button color
         binding.productBtnFavorite.setImageResource(if (product.isFavorite) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off)
@@ -92,6 +97,9 @@ class ProductFragment : Fragment() {
         product.attributes.forEach {
             binding.productTextAttributes.append("${it.name}: ${it.value_name}\n")
         }
+
+        //binding warranty
+        binding.productTextWarranty.text = product.warranty
     }
 
     private fun bindDescription(description: String) {
