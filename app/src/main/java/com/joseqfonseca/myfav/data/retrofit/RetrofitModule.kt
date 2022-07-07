@@ -16,7 +16,7 @@ import javax.inject.Singleton
 object RetrofitModule {
 
     const val BASE_URL = "https://api.mercadolibre.com/"
-    const val TOKEN = "Bearer APP_USR-878200324327964-070509-b91c7ce265d56bf1847febfcbf767ecf-131272078"
+    const val TOKEN = "Bearer ..."
 
     @Singleton
     @Provides
